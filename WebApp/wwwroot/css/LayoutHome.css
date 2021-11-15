@@ -1,0 +1,65 @@
+﻿.body {
+    font-family: Times New Roman, Tahoma, Heveltica;
+}
+.fa {
+    /*font-size: 30px;*/
+    text-align: center;
+    border-radius: 40%;
+    height: 150px;
+    width: 150px;
+}
+.fa:hover {
+    opacity: 0.7;
+}
+.fa-facebook {
+    background:blue;
+    color: white; 
+}
+.fa-youtube {
+    background:red;
+    color: white;
+    
+}
+.item {
+    cursor: pointer;
+    margin: 0% !important;
+    margin-top: 2% !important;
+    padding: 2% !important;
+    transition: transform 0.4s;    
+}
+.ChonBV {
+    border-radius: 10px;
+    background: linear-gradient(#FFFFFF, #F8FBEF, #F8FBEF, #A9F5A9);
+}
+.chidan {
+    cursor: pointer;
+    margin: 0%;
+    margin-top: 2% !important;
+    padding: 0% !important;
+}
+div.item img {
+    width:30%; 
+}
+
+.item:hover {
+    background-color:cornsilk;
+    border-radius: 10%;
+    transform: scale(1.1);
+}
+div.col-xs-12 dk img {
+    width:1% !important;
+}
+.btn-info {
+    color: black !important;
+}
+.ttchung {
+    background-color: #2E2E2E !important;
+    color: white !important;
+}
+.navbar-default{
+    margin-bottom: 0% !important;
+}
+.navbar {
+    background-color: azure !important;
+    color: black !important;
+}

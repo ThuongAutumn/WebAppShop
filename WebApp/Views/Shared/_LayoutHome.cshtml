@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <link rel="icon" href="~/image/icon/HGSoft.png" />
+    <!--bootrasp -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <!--link bieu tuong-->
+    <link href="/css/LayoutHome.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <!----menu chuan-->
+    <nav class="navbar navbar-default">
+        <div class="navbar-header">
+            <a href="/home/index" class="navbar-brand" style="color: crimson; font-size: 150%">Chat</a>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a class=" navbar-brand btn btn-group" data-toggle="modal" data-target="#TTTaiKhoan">
+                    <span class="glyphicon glyphicon-user" style="color:brown"></span><label id="tennd">@User.Identity.Name</label><span class="caret"></span>
+                </a>
+            }
+            else
+            {
+                <a class=" navbar-brand btn btn-group" data-toggle="modal" data-target="#dangNhap" style="font-size: 14px; padding-left: 0px!important">
+                    <span class="glyphicon glyphicon-user" style="color:brown"></span>Đăng nhập<span class="caret"></span>
+                </a>
+            }
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+        </div>
+        <div id="navbar" class="navbar-collapse collapse navbar-right" aria-expanded="false" style="height: 1px;">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">1.Chat online</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="~/chat/chat_order">1.1.Chat Order</a></li>                        
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">2.Tiện ích</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">2.1.</a></li>
+                        <li><a href="#">2.2.</a></li>
+                        <li><a href="#">2.3.</a></li>                        
+                    </ul>
+                </li>
+                <!---moi nhat-->
+            </ul>
+        </div><!--/.nav-collapse -->
+    </nav>
+    <!--Đang nhap-->
+    <div class="modal fade" id="dangNhap" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLongTitle">Đăng nhập</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Nhập User</label>
+                        <label id="tb_loi"></label>
+                        <input id="user" type="text" class="form-control" placeholder="Tên đăng nhập">
+                    </div>
+                    <div class="form-group">
+                        <label>Nhập mã bệnh viện</label>
+                        <label id="tb_loi"></label>
+                        <input id="Ma" type="text" class="form-control" placeholder="Mã đăng nhập">
+                    </div>
+                    <div class="form-group">
+                        <label>Nhớ mã</label>
+                        <input id="NhoMa" type="checkbox" checked="checked" />
+                    </div>
+                    <div class="text-center" style="margin-bottom: 2%">
+                        <button class="btn btn-primary btn-lg" onclick="Gui()">Gửi</button>
+                    </div>                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Thoát</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <!--model thong tin ca nhan-->
+        <div class="modal fade" id="TTTaiKhoan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Người dùng: <span class="glyphicon glyphicon-user"></span> @User.Identity.Name</h3>
+                    </div>
+                    <div class="modal-body">
+                                               
+                    </div>
+                    <div class="modal-footer">
+                        <a class="btn btn-danger btn-lg active" role="button" aria-pressed="true" style="float: left" data-toggle="modal" data-target="#exampleModal" onclick="dongTTTaikhoan()">Đăng Xuất</a>
+                        <a href="#" class="btn btn-success btn-lg active" role="button" aria-pressed="true" data-dismiss="modal">Đóng</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--model dang xuat-->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h3>Bạn có chắc muốn đăng xuất?</h3>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="/Home/signout" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Đăng Xuất</a>
+                        <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" data-dismiss="modal">Đóng</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <!---botrapsmenu-->
+    <div>
+        @RenderBody()
+    </div>
+    <!--Thong tin chung-->   
+    <div class="footer">
+        
+    </div>
+    <!--javascript-->
+    <script type="text/javascript">
+        function dongTTTaikhoan() {
+            $('#TTTaiKhoan').modal('hide');
+        }
+    </script>
+    <script>
+        function Gui() {
+            var User = document.getElementById("user").value;
+            var MaBV = document.getElementById("Ma").value;
+            var NhoMa = document.getElementById("NhoMa");
+            var o = { 'User': `${User}`, 'Ma': `${MaBV}`, 'Remember': `${NhoMa.checked}` };
+            ajax.post(o, '/home/DangNhap', function (data) {
+                kq = JSON.parse(data);
+                if (kq == 1) {
+                    window.location = "/home/index";
+                } else if (kq == 0) {
+                    alert("Nhập sai mã");
+                } else if (kq == 2) {
+                    alert("Vui lòng nhập mã");
+                }
+            });
+        }
+
+        function YeuCau() {
+            alert("Xin lỗi! bạn cần nhập mã")
+        }
+    </script>
+</body>
+</html>
